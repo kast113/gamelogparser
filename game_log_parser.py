@@ -3,6 +3,8 @@ from abc import ABC, abstractmethod
 
 from schemas import GetBalanceSchema, GameLogTypeEnum, WriteBetSchema
 
+import numpy as np
+
 logger = logging.getLogger(__name__)
 
 
@@ -85,6 +87,7 @@ class XgamesGameLogParser(GameLogParser):
             game_id=self.payload.get('game_id'),
             session_id=self.payload.get('sessionid'),
             trade_id=self.payload.get('tradeId'),
+            matrix=np.array(self.payload.get('matrix')),
         )
 
 
@@ -103,7 +106,7 @@ class TBSGameLogParser(GameLogParser):
             sign=self.payload.get('sign'),
             currency=self.payload.get('currency'),
             login=self.payload.get('login'),
-            hall=self.payload.get('hall')
+            hall=self.payload.get('hall'),
         )
 
     def write_bet(self) -> WriteBetSchema:
@@ -136,4 +139,5 @@ class TBSGameLogParser(GameLogParser):
             game_id=self.payload.get('gameId'),
             session_id=self.payload.get('sessionId'),
             trade_id=self.payload.get('tradeId'),
+            matrix=np.zeros((3, 3)),  # TODO  'MQKFA;JAIM1;1B1JF;',
         )

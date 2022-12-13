@@ -72,7 +72,7 @@ if __name__ == '__main__':
     print('tbs write bet')
     parser_tbs = GameLogParseF(
         GameLogProviderEnum.tbs,
-        GameLogTypeEnum.get_balance,
+        GameLogTypeEnum.write_bet,
         payload={'cmd': 'writeBet',
                  'hall': '11307908',
                  'key': 'KglP5yOPES314XLdyTkDIgWiZ4edNMNi',

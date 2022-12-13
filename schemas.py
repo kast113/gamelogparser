@@ -3,6 +3,7 @@ import decimal
 from enum import Enum
 
 import pydantic
+import numpy as np
 
 
 class GameLogProviderEnum(str, Enum):
@@ -104,3 +105,7 @@ class WriteBetSchema(pydantic.BaseModel):
     game_id: int
     session_id: str  # str | int
     trade_id: str
+    matrix: np.ndarray
+
+    class Config:
+        arbitrary_types_allowed = True
